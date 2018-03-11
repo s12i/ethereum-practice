@@ -20,6 +20,12 @@ func initRouter() *gin.Engine {
 	// 送出交易
 	router.POST("/trx", app.SendTrx)
 
+	// 送出交易
+	router.PUT("/miner/:threads", app.StartMine)
+
+	// 送出交易
+	router.DELETE("/miner", app.StopMine)
+
 	return router
 }
 
