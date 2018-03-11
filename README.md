@@ -349,6 +349,20 @@ INFO [03-12|02:25:09] 🔗 block reached canonical chain         number=50 hash=
 INFO [03-12|02:25:09] 🔨 mined potential block                 number=55 hash=0d55ce…1bfe6f
 ```
 
+#### DELETE /miner
+
+停止挖礦
+
+#### 範例
+
+```
+// 送出請求
+curl -X DELETE http://localhost:8080/miner
+
+// 回傳結果 ( HTTP 204 )
+```
+
+
 
 
 
