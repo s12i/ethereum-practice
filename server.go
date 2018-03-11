@@ -8,7 +8,10 @@ import (
 func initRouter() *gin.Engine {
 	router := gin.Default()
 
+	// 取得節點資訊
 	router.GET("/node", app.GetNodeInfo)
+
+	// 透過區塊編號取得區塊資訊
 	router.GET("/block/:blockNumber", app.GetBlockInfo)
 
 	return router
