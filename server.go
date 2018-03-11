@@ -17,6 +17,9 @@ func initRouter() *gin.Engine {
 	// 透過交易編號取得交易資訊
 	router.GET("/trx/:trxHash", app.GetTrxInfo)
 
+	// 送出交易
+	router.POST("/trx", app.SendTrx)
+
 	return router
 }
 

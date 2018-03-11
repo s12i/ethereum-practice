@@ -7,6 +7,12 @@ import (
 	"github.com/s12i/maicon-fullstack-test/app/jsonrpc"
 )
 
+type Trx struct {
+	From  string `json:"from"`
+	To    string `json:"to"`
+	Value int    `json:"value"`
+}
+
 /*
 GetTrxInfo - 取得交易資訊
 Go-Ethereum JSON-RPC API：https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_gettransactionbyhash
@@ -26,5 +32,22 @@ func GetTrxInfo(context *gin.Context) {
 		"nonce":       response.Get("result").Get("nonce").MustString(),
 		"to":          response.Get("result").Get("to").MustString(),
 		"value":       response.Get("result").Get("value").MustString(),
+	})
+}
+
+/*
+SendTrx - 送出交易
+Go-Ethereum JSON-RPC API：https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_sendtransaction
+*/
+func SendTrx(context *gin.Context) {
+	var trx Trx
+	context.BindJSON(&trx)
+
+	trxDetail := map[string]interface{}{"from": trx.From, "to": trx.To, "value": trx.Value}
+	params := []map[string]interface{}{trxDetail}
+	response := jsonrpc.ClientRequest("eth_sendTransaction", params)
+
+	context.JSON(http.StatusCreated, gin.H{
+		"trx": response.Get("result").MustString(),
 	})
 }
