@@ -9,6 +9,10 @@ import (
 	"github.com/s12i/maicon-fullstack-test/app/jsonrpc"
 )
 
+/*
+StartMine - 開始挖礦
+Go-Ethereum JSON-RPC API：https://github.com/ethereum/go-ethereum/wiki/Management-APIs#miner_start
+*/
 func StartMine(context *gin.Context) {
 	if !govalidator.IsInt(context.Param("threads")) {
 		context.JSON(http.StatusUnprocessableEntity, gin.H{
@@ -29,6 +33,10 @@ func StartMine(context *gin.Context) {
 	context.Data(http.StatusNoContent, gin.MIMEHTML, nil)
 }
 
+/*
+StopMine - 停止挖礦
+Go-Ethereum JSON-RPC API：https://github.com/ethereum/go-ethereum/wiki/Management-APIs#miner_stop
+*/
 func StopMine(context *gin.Context) {
 	jsonrpc.ClientRequest("miner_stop", nil)
 	context.Data(http.StatusNoContent, gin.MIMEHTML, nil)
