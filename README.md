@@ -161,7 +161,7 @@ curl -X GET http://localhost:8080/node
 
 取得區塊資訊 ( 啟動 `testrpc` 或 `geth` )
 
-### 參數
+#### 參數
 
 區塊編號，須為一個整數
 
