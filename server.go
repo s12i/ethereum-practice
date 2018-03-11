@@ -32,5 +32,5 @@ func initRouter() *gin.Engine {
 }
 
 func main() {
-	initRouter().Run()
+	initRouter().Run() // 監聽 8080 port
 }
