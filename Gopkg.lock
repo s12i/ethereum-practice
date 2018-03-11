@@ -2,6 +2,12 @@
 
 
 [[projects]]
+  name = "github.com/asaskevich/govalidator"
+  packages = ["."]
+  revision = "521b25f4b05fd26bec69d9dedeb8f9c9a83939a8"
+  version = "v8"
+
+[[projects]]
   name = "github.com/bitly/go-simplejson"
   packages = ["."]
   revision = "aabad6e819789e569bd6aabf444c935aa9ba1e44"
@@ -71,6 +77,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "8c631f97c518dc71f323cebf69adf29315dc2e18c8128d9c58c399e9ed7d53aa"
+  inputs-digest = "c1fde4bb49fd6bf1e3c4509a4942e5e6bfe764d0b9b8d448642fde1b060358f1"
   solver-name = "gps-cdcl"
   solver-version = 1
