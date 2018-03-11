@@ -3,10 +3,12 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/s12i/maicon-fullstack-test/app"
+	"github.com/s12i/maicon-fullstack-test/app/middleware"
 )
 
 func initRouter() *gin.Engine {
 	router := gin.Default()
+	router.Use(middleware.Throttle(1000, 20))
 
 	// 取得節點資訊
 	router.GET("/node", app.GetNodeInfo)
