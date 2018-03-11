@@ -32,6 +32,15 @@ func GetBlockInfo(context *gin.Context) {
 	params := []interface{}{fmt.Sprintf("0x%x", blockNumber), true}
 	response := jsonrpc.ClientRequest("eth_getBlockByNumber", params)
 
+	if len(response.Get("result").Get("hash").MustString()) == 0 {
+		context.JSON(http.StatusOK, gin.H{
+			"message": "block not found",
+			"data":    []string{},
+		})
+
+		return
+	}
+
 	context.JSON(http.StatusOK, gin.H{
 		"difficulty":      response.Get("result").Get("difficulty").MustString(),
 		"gasLimit":        response.Get("result").Get("gasLimit").MustString(),
