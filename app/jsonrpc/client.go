@@ -15,6 +15,7 @@ const (
 	rpcPort int    = 8545
 )
 
+// ClientRequest - 送出基於 JSON RPC 2.0 格式的請求
 func ClientRequest(method string, params interface{}) *simplejson.Json {
 	data, _ := json2.EncodeClientRequest(method, params)
 	request, _ := http.NewRequest("POST", fmt.Sprintf("http://%s:%d", rpcURL, rpcPort), bytes.NewBuffer(data))

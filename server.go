@@ -14,6 +14,9 @@ func initRouter() *gin.Engine {
 	// 透過區塊編號取得區塊資訊
 	router.GET("/block/:blockNumber", app.GetBlockInfo)
 
+	// 透過交易編號取得交易資訊
+	router.GET("/trx/:trxHash", app.GetTrxInfo)
+
 	return router
 }
 
