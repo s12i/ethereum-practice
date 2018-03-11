@@ -2,6 +2,12 @@
 
 
 [[projects]]
+  name = "github.com/bitly/go-simplejson"
+  packages = ["."]
+  revision = "aabad6e819789e569bd6aabf444c935aa9ba1e44"
+  version = "v0.5.0"
+
+[[projects]]
   branch = "master"
   name = "github.com/gin-contrib/sse"
   packages = ["."]
@@ -22,6 +28,15 @@
   packages = ["proto"]
   revision = "925541529c1fa6821df4e44ce2723319eb2be768"
   version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/gorilla/rpc"
+  packages = [
+    "v2",
+    "v2/json2"
+  ]
+  revision = "22c016f3df3febe0c1f6727598b6389507e03a18"
+  version = "v1.1.0"
 
 [[projects]]
   name = "github.com/mattn/go-isatty"
@@ -56,6 +71,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "1a2b10f3ec80fa4b6ad88156b737403ca45820640ec668e0b797538b6274d305"
+  inputs-digest = "8c631f97c518dc71f323cebf69adf29315dc2e18c8128d9c58c399e9ed7d53aa"
   solver-name = "gps-cdcl"
   solver-version = 1
