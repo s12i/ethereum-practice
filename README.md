@@ -1,8 +1,8 @@
 # MaiCoin Fullstack Engineer Assignment
 
-專案的目的在實作 [MaiCoin Fullstack Engineer Assignment](https://www.evernote.com/l/ADpe8SRPT4tM36027Y1MiOUWN5t8M2vzPfQ) 裡所提及的需求
+專案的目的在實作 [MaiCoin Fullstack Engineer Assignment](https://www.evernote.com/l/ADpe8SRPT4tM36027Y1MiOUWN5t8M2vzPfQ) 裡所提及的需求。
 
-### Installation
+## 安裝
 
 專案是透過 [Gin Web Framework](https://github.com/gin-gonic/gin) 開發，並配合 [Dep](https://github.com/golang/dep) 確保使用的相關套件能夠正確的安裝。假設欲執行專案的環境裡已經有安裝了 [Dep](https://github.com/golang/dep)，請進入專案目錄後，執行命令：
 
