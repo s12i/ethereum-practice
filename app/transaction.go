@@ -7,7 +7,7 @@ import (
 	"github.com/s12i/maicon-fullstack-test/app/jsonrpc"
 )
 
-type Trx struct {
+type transaction struct {
 	From  string `json:"from"`
 	To    string `json:"to"`
 	Value int    `json:"value"`
@@ -40,7 +40,7 @@ SendTrx - 送出交易
 Go-Ethereum JSON-RPC API：https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_sendtransaction
 */
 func SendTrx(context *gin.Context) {
-	var trx Trx
+	var trx transaction
 	context.BindJSON(&trx)
 
 	trxDetail := map[string]interface{}{"from": trx.From, "to": trx.To, "value": trx.Value}
