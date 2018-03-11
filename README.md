@@ -286,7 +286,7 @@ Block Time: Mon Mar 12 2018 02:14:10 GMT+0800 (CST)
 
 #### 參數
 
-為一串代表交易的編號，以上數產生交易的結果為例，編號將會為 `0xb64d57709cc92445f652b32ddfbf54b6d8a78be9d5a19ea2d7ed6c0d2763075b `
+為一串代表交易的編號，以上述產生交易的結果為例，編號將會為 `0xb64d57709cc92445f652b32ddfbf54b6d8a78be9d5a19ea2d7ed6c0d2763075b `
 
 #### 範例
 
@@ -308,6 +308,47 @@ curl -X GET \
     "value": "0x64"
 }
 ```
+
+#### PUT /miner/:threads
+
+開始挖礦
+
+#### 參數
+
+執行緒 ( threads ) 數目，須為一個整數，若小於 `1`，將預設為 `1`
+
+#### 範例
+
+```
+// 送出請求
+curl -X PUT http://localhost:8080/miner/3
+
+// 回傳結果 ( HTTP 204 )
+
+// geth console
+INFO [03-12|02:23:36] Updated mining threads                   threads=3
+INFO [03-12|02:23:36] Transaction pool price threshold updated price=18000000000
+INFO [03-12|02:23:36] Starting mining operation
+INFO [03-12|02:23:36] Commit new mining work                   number=1 txs=0 uncles=0 elapsed=394.881µs
+INFO [03-12|02:23:44] Successfully sealed new block            number=1 hash=07949a…0dd5ae
+```
+
+```
+// 送出請求，且執行緒數目為 0
+curl -X PUT http://localhost:8080/miner/0
+
+// 回傳結果 ( HTTP 204 )
+
+// geth console
+INFO [03-12|02:25:08] Updated mining threads                   threads=1
+INFO [03-12|02:25:08] Transaction pool price threshold updated price=18000000000
+INFO [03-12|02:25:08] Starting mining operation
+INFO [03-12|02:25:08] Commit new mining work                   number=55 txs=0 uncles=0 elapsed=429.195µs
+INFO [03-12|02:25:09] Successfully sealed new block            number=55 hash=0d55ce…1bfe6f
+INFO [03-12|02:25:09] 🔗 block reached canonical chain         number=50 hash=446621…4debc2
+INFO [03-12|02:25:09] 🔨 mined potential block                 number=55 hash=0d55ce…1bfe6f
+```
+
 
 
 
