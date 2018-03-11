@@ -27,6 +27,12 @@ drwxr-xr-x  5 s12i  staff   160B  3 12 01:21 vendor
 $ go run server.go
 ```
 
+或者，直接執行預先編譯產生的執行檔 ( Mac 環境 )：
+
+```
+$ ./server
+```
+
 若執行成功，可以看見如下的訊息：
 
 ```
