@@ -67,36 +67,37 @@ EthereumJS TestRPC v6.0.3 (ganache-core: 2.0.2)
 
 Available Accounts
 ==================
-(0) 0xc78270f5ff9121689a4e6205cd549efe51756fde
-(1) 0x0a7c4e52a314798ee5a3c8ec127818786430d78e
-(2) 0x9414176541f9fc66c7066442d6163d4980a609b5
-(3) 0xae49abf36d168804692ae7d64b0915089ae44277
-(4) 0xecd4757dc4ac59ad9b038f750ff36c2f7d118658
-(5) 0x0dbe9800a523235e18847ff6e3cac596543f0a02
-(6) 0xa029d164e0beae7ae19827731edf672d13251bf0
-(7) 0x8835d0c1efb48148ba9af1ce6e0533beded0e815
-(8) 0x0d321482c50e9973556bde322a81758df036fb5a
-(9) 0x5d7b24450faa783785cf48f2e46ab5dd4a2badf9
+(0) 0xf9a022e734d573f92943ffd34d203dc16d6dcbcd
+(1) 0x6989ff0102d99c804b8b6459cc720b433e5c46c1
+(2) 0xd079d212d9c5cddf0e180064b625c76dd213e9ce
+(3) 0xaff2ba4ca4e02de13a8f4b71a1ddccd59bb792f9
+(4) 0x403047f4f6b05c4334af1e302a2703261e43abce
+(5) 0x9bf45892cbef1cf5c2f3fc6ebbae0b6dd3cec0d9
+(6) 0xd837e2540a1381c0cae1a8f8ad95db5f11cdb28d
+(7) 0x9c3a85c52efa119b9326c1b83ef748f994c17d2a
+(8) 0xb3d80df2975100b23135932c782fedaa64328e42
+(9) 0x6b3d042e3ac7653b0e6e926572621335182e80e2
 
 Private Keys
 ==================
-(0) 9da80ff9510ee055dbabefb454d91cd423d3aec9fce9fc8b58dc512086c46a1f
-(1) 10ea47f4ae33aef6eb4749f3be603ffac04b339b5aaa63d693b41223b5699120
-(2) c72fd2f8815c865e6738318451adfda454566c75212b8fd88be96bc53807d25a
-(3) 5490250c510ccb39462011e78eb38ef7e507109cbd3cc81750718b4114166322
-(4) 34074844e410184062be5719e46ce3602e81d48a9430f020ea74e35ba5c47e7a
-(5) 7b26877f4c89b2795aba67608b25c0572c03817ec3c3a2af266b91754b2e8e18
-(6) 060e98155ef966aac2f38b6a07046c999eb2021500d85ce14fc0e2556bc6dd3d
-(7) 0d9c89ef8dcbe6e61a84098c3e3ff8ab418965677f32c38d7a4bcf801b3b1520
-(8) fed85f5ce15c25e4acda4ca280deaab2a1a5607454b3961fbc3bca9d03c908a2
-(9) 7bca7b8d2920c5cc465fed1da53634063ea846a8bb35e762bc82617180ec9dc4
+(0) c37003d3f0d9ca886b8ebe01e400cf63927c85c772e579b2f780293ad6fd77f9
+(1) b3f98d6b254caddb1cbbc1b8791a309910555a075abdb1ca4f888612d26f6eec
+(2) 32196ead0f80fa8a8805730f01564ddba969a77d14130929a60551a9a0a3c3df
+(3) 55d5f75a5c72155007a606b836cc0e9bfd031a5b1d2d1a34e4255e64b8f5237d
+(4) 22fc6511d734e60236f5c3071e52e2ab181c0800b32a6935b526d7d8ed6ac045
+(5) e3482a6778338c2fa8a65b30b9261d3b4bd2e2284830650401e4f0ba58f8c05d
+(6) 48a70620e59747a8c9e9bd26cbf22c4df63d508c2c05354e215b2ee711b9ac7f
+(7) b04ad2976fa5c85e26af1e87f26a3ad0863ba8054aea37fcef3a3d7e365d1cf0
+(8) 7dacb0f7b983d07d664802208d469874291474fe53862ff9000832f5ea1c3190
+(9) 302c62ffbaee893cf474558586917dbfe5e2b605b675f2ca3729ae71d42a119b
 
 HD Wallet
 ==================
-Mnemonic:      wife faculty never hard canoe truth bulk swift balance outdoor script sell
+Mnemonic:      oxygen scrap post cost virus absurd scare shuffle bar blush vote brief
 Base HD Path:  m/44'/60'/0'/0/{account_index}
 
 Listening on localhost:8545
+eth_sendTransaction
 ```
 可以看見 `testrpc` 已預先建立了 10 組帳號 ( 並包含預設數量的乙太幣 )，稍後說明 API 的使用時，將會以 `testrpc` 所建立的測試帳號做說明。但 `testrpc` 並未包含 `admin` 模組：
 
@@ -125,18 +126,56 @@ $ rpc.modules
 ```
 $ geth --identity maicoin-test init genesis.json --datadir privatechain
 ```
+接著產生一位使用者：
 
-執行後，將會在專案下產生一個私有區塊資料用的目錄 `privatechain`，接著執行：
+```
+$ geth account new
+INFO [03-12|02:06:05] Maximum peer count                       ETH=25 LES=0 total=25
+Your new account is locked with a password. Please give a password. Do not forget this password.
+Passphrase:
+```
+
+填入密碼後 ( Passphrase )，將回回傳該使用者的編號 ( 編號將與範例說明不同 )：
+
+```
+Address: {443b2f62f649929d54ef1c7eaa11948e9901058d}
+```
+
+我們將使用該帳號來驗證開始挖礦以及停止挖礦的 API。要啟動 `geth` 可以執行如下命令，將會在專案下產生一個私有區塊資料用的目錄 `privatechain`，接著執行：
 
 ```
 geth --datadir privatechain \
      --networkid 1116 \
      --rpc --rpcapi admin,db,eth,net,web3,personal,miner \
      --cache=1024 --rpcport 8545 --rpcaddr 127.0.0.1 --rpccorsdomain "*" \
-     --etherbase=65fa89786c08c2019351ff5f27d92578bc6130a7
+     --etherbase=443b2f62f649929d54ef1c7eaa11948e9901058d
 ```
 
-上述命令中加入了 `admin` 以及 `miner` 模組，提供對應的 `RPC` 呼叫。`geth` 與 `testrpc` 將只能擇一啟動，避免相關 Port ( 8545 ) 使用。
+請將上述產生的帳號加入 `etherbase`。上述命令中加入了 `admin` 以及 `miner` 模組，是為了提供對應的 `RPC` 呼叫 ( `admin` 以及 `miner` )：
+
+```
+$ geth attach http://localhost:8545
+Welcome to the Geth JavaScript console!
+
+instance: Geth/v1.8.2-stable/darwin-amd64/go1.10
+coinbase: 0x65fa89786c08c2019351ff5f27d92578bc6130a7
+at block: 0 (Thu, 01 Jan 1970 08:00:00 CST)
+ datadir: /Users/s12i/go/src/github.com/s12i/maicon-fullstack-test/privatechain
+ modules: admin:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 web3:1.0
+ 
+$ rpc.modules
+{
+  admin: "1.0",
+  eth: "1.0",
+  miner: "1.0",
+  net: "1.0",
+  personal: "1.0",
+  rpc: "1.0",
+  web3: "1.0"
+} 
+```
+
+`geth` 與 `testrpc` 將只能擇一啟動，避免相關 Port ( 8545 ) 使用。
 
 ## API
 
@@ -193,6 +232,80 @@ curl -X GET http://localhost:8080/block/foo
 // 回傳結果 ( HTTP 422 )
 {
     "message": "blockNumber must be an number"
+}
+```
+
+#### POST /trx
+
+送出交易 ( 啟動 `testrpc` )
+
+#### 參數
+
+為 `form raw data`：
+
+```
+{
+	"from": "0xf9a022e734d573f92943ffd34d203dc16d6dcbcd",
+	"to": "0x6989ff0102d99c804b8b6459cc720b433e5c46c1",
+	"value": 100
+}
+```
+
+#### 範例
+
+```
+// 送出請求
+curl -X POST \
+  http://localhost:8080/trx \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"from": "0xf9a022e734d573f92943ffd34d203dc16d6dcbcd",
+	"to": "0x6989ff0102d99c804b8b6459cc720b433e5c46c1",
+	"value": 100
+}'
+
+
+// 回傳結果 ( HTTP 201 )
+{
+    "trx": "0xb64d57709cc92445f652b32ddfbf54b6d8a78be9d5a19ea2d7ed6c0d2763075b"
+}
+```
+
+可以在 `testrpc` console 中看見交易訊息：
+
+```
+Transaction: 0xb64d57709cc92445f652b32ddfbf54b6d8a78be9d5a19ea2d7ed6c0d2763075b
+Gas usage: 21000
+Block Number: 1
+Block Time: Mon Mar 12 2018 02:14:10 GMT+0800 (CST)
+```
+
+#### GET /trx/:trxHash
+
+取回交易資訊 ( 啟動 `testrpc` )
+
+#### 參數
+
+為一串代表交易的編號，以上數產生交易的結果為例，編號將會為 `0xb64d57709cc92445f652b32ddfbf54b6d8a78be9d5a19ea2d7ed6c0d2763075b `
+
+#### 範例
+
+```
+// 送出請求
+curl -X GET \
+  http://localhost:8080/trx/0xb64d57709cc92445f652b32ddfbf54b6d8a78be9d5a19ea2d7ed6c0d2763075b
+
+// 回傳結果 ( HTTP 200 )
+{
+    "blockHash": "0xd4b0a1490f308b21123ce31e20a0155f5a435c8a2c9b526ea0a85efae1cbef44",
+    "blockNumber": "0x01",
+    "from": "0xf9a022e734d573f92943ffd34d203dc16d6dcbcd",
+    "gas": "0x015f90",
+    "gasPrice": "0x01",
+    "hash": "0xb64d57709cc92445f652b32ddfbf54b6d8a78be9d5a19ea2d7ed6c0d2763075b",
+    "nonce": "0x0",
+    "to": "0x6989ff0102d99c804b8b6459cc720b433e5c46c1",
+    "value": "0x64"
 }
 ```
 
