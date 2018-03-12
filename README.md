@@ -4,7 +4,7 @@
 
 ## 安裝
 
-專案是透過 [Gin Web Framework](https://github.com/gin-gonic/gin) 開發，並配合 [Dep](https://github.com/golang/dep) 確保使用的相關套件能夠正確的安裝。假設欲執行專案的環境裡已經有安裝了 [Dep](https://github.com/golang/dep)，請進入專案目錄後，執行命令：
+專案是透過 [Gin Web Framework](https://github.com/gin-gonic/gin) 開發，並配合 [Dep](https://github.com/golang/dep) 確保使用的相關套件能夠正確的安裝。假設欲執行專案的環境裡已經有安裝了 [Dep](https://github.com/golang/dep)，請進入專案目錄後 ( $HOME/go/src/github.com/s12i/maicon-fullstack-test )，執行命令：
 
 ```
 $ dep ensure
