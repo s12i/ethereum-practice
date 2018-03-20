@@ -22,11 +22,11 @@ func ClientRequest(method string, params interface{}) *simplejson.Json {
 
 	request.Header.Set("Content-Type", "application/json")
 	reply, err := http.DefaultClient.Do(request)
-	defer reply.Body.Close()
-
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+
+	defer reply.Body.Close()
 
 	buffer := new(bytes.Buffer)
 	buffer.ReadFrom(reply.Body)
