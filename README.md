@@ -1,6 +1,6 @@
-# MaiCoin Fullstack Engineer Assignment
+# Ethereum Practice
 
-專案的目的在實作 [MaiCoin Fullstack Engineer Assignment](https://www.evernote.com/l/ADpe8SRPT4tM36027Y1MiOUWN5t8M2vzPfQ) 裡所提及的需求。
+專案的目的在實作與練習 Ethereum 以及 JSON RPC
 
 ## 安裝
 
@@ -168,7 +168,7 @@ coinbase: 0x65fa89786c08c2019351ff5f27d92578bc6130a7
 at block: 0 (Thu, 01 Jan 1970 08:00:00 CST)
  datadir: /Users/s12i/go/src/github.com/s12i/maicon-fullstack-test/privatechain
  modules: admin:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 web3:1.0
- 
+
 $ rpc.modules
 {
   admin: "1.0",
@@ -178,7 +178,7 @@ $ rpc.modules
   personal: "1.0",
   rpc: "1.0",
   web3: "1.0"
-} 
+}
 ```
 
 `geth` 與 `testrpc` 將只能擇一啟動，避免相關 Port ( 8545 ) 使用。
@@ -193,7 +193,7 @@ $ rpc.modules
 
 ```
 // 送出請求
-curl -X GET http://localhost:8080/node 
+curl -X GET http://localhost:8080/node
 
 // 回傳結果 ( HTTP 200 )
 {
